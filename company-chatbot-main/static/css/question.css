@@ -1,0 +1,245 @@
+html {
+    font-size: 100%;
+    /*16px*/
+}
+
+#questionAnswer {
+    max-width: 43.75rem;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #fef5e7;
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .1);
+    margin-bottom: 50px;
+}
+
+
+#question header {
+    display: flex;
+    align-items: center;
+}
+
+
+#boolSolvedAnswerFrame {
+    width: 100px;
+    height: 45px;
+    margin: 5px 10px 5px 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 0, 0, 0);
+    color: rgba(202, 10, 10, 0);
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#boolSolvedAnswer {
+    font-size: 1.3rem;
+}
+
+#updateTime {
+    padding-left: 0.3rem;
+}
+
+#numAnswers {
+    margin-left: auto;
+    margin-right: 2.0rem;
+    margin-top: 8px;
+
+    display: flex;
+}
+
+#numAnswers div {
+    margin-top: 7px;
+}
+
+
+#numAnswers p {
+    display: flex;
+    align-items: center;
+    margin-left: 6px;
+}
+
+#question .userInfo {
+    display: flex;
+}
+
+#questionBox {
+    height: 50px;
+    margin: 0 10px;
+    border-bottom: 3px solid rgb(226, 226, 226);
+}
+
+#questionSentence {
+    font-size: 1.4rem;
+    font-weight: 900;
+    margin-top: 20px;
+}
+
+#stringAllAnswerBox {
+    margin: 0 10px;
+    border-bottom: 1px solid rgb(226, 226, 226);
+}
+
+#stringAllAnswer {
+    font-size: 1.1rem;
+    font-weight: 900;
+    margin: 30px 0 10px 0;
+
+}
+
+#templateAnswer {
+    display: none;
+}
+
+.userInfo {
+    display: flex;
+}
+
+.userIcon {
+    width: 40px;
+    height: 40px;
+}
+
+.userName {
+    font-weight: 900;
+}
+
+.answerElement .userInfo {
+    display: flex;
+}
+
+.answerElement {
+    margin: 0 10px;
+    border-bottom: 1px solid rgb(226, 226, 226);
+}
+
+#reactionForAnswer {
+    display: flex;
+}
+
+#goodPointFrame {
+    display: flex;
+    border: 1px solid rgb(182, 182, 182);
+    width: 50px;
+    height: 30px;
+    background-color: rgb(255, 246, 235);
+    margin: 10px 0 5px 10px;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .1);
+}
+
+#goodPointFrame:hover {
+    background-color: rgb(207, 207, 207);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+#goodIcon {
+    width: 20px;
+    height: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5px;
+}
+
+#numGoodPoint {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5px;
+}
+
+#solvedAnswerFrame {
+    display: flex;
+    border: 1px solid rgb(182, 182, 182);
+    width: auto;
+    height: 30px;
+    background-color: rgb(255, 246, 235);
+    margin: 10px auto 5px 10px;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .1);
+}
+
+#solvedAnswerFrame:hover {
+    background-color: rgb(207, 207, 207);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+#solvedAnswerIcon {
+    width: 20px;
+    height: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5px;
+}
+
+#stringSolvedAnswer {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5px;
+}
+
+#myAnswer {
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.040);
+    max-width: 43.75rem;
+    margin: 20px 10px 20px 10px;
+    border-radius: 10px;
+    height: 352px;
+}
+
+#myAnswer .userInfo {
+    display: flex;
+}
+
+#textareaBox {
+    margin: 0 10px;
+}
+
+#textareaBackground {
+    background-color: white;
+    border-radius: 10px;
+}
+
+#textareaBackground textarea {
+    resize: none;
+    padding: 0;
+    width: 97%;
+    height: 200px;
+    margin: 10px;
+}
+
+#answerButton {
+    border: solid thin;
+}
+
+#myUserIcon {
+    width: 50px;
+    height: 50px;
+}
+
+#myUserName {
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+#answerButtonFrame {
+    border: 1px solid rgb(182, 182, 182);
+    width: 100px;
+    height: 45px;
+    margin: 10px auto 40px 10px;
+    border-radius: 5px;
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .1);
+    background-color: rgb(255, 246, 235);
+    font-weight: 900;
+}
+
+#answerButtonFrame div {
+    padding: 9px 0px 6px 30px;
+    font-size: 1.2rem;
+}
+
+#answerButtonFrame :hover {
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.137);
+}

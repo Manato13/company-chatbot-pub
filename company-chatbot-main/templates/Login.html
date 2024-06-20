@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>ログイン画面</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      /* 画像のスタイル */
+      #frame {
+        width: 140px;
+        height: 140px;
+        margin: auto;
+        display: block;
+        margin-top: 10px; /* 画像を少し上に配置 */
+      }
+
+      .container {
+        width: 360px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #fff;
+        margin-top: 20px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: inline-block;
+        width: 100px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 5px;
+        margin-top: 4px;
+        margin-bottom: 6px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      input[type="submit"],
+      button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+
+      button {
+        background-color: #007bff;
+        color: white;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      /* スタイルは省略せずに記述 */
+      /* 2つの画面のスタイルを制御するためのクラス */
+      .screen {
+        display: none;
+      }
+
+      /* 最初の画面のスタイル */
+      #screen1 {
+        display: block;
+        /* 最初は表示 */
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ログイン画面 -->
+    <div class="screen" id="screen1">
+      <div id="frame">
+        <img src="static/img/logoidea2.png" width="140" height="140">
+      </div>
+
+      <div class="container">
+        <h1>進化するチャットボット</h1>
+        <form id="loginForm" method="post">
+          <div class="form-group">
+              <label for="username">Username</label>
+              <input id="username" name="username" type="text"/>
+          </div>
+          <div class="form-group">
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password"/>
+          </div>
+          <div class="form-group">
+              <input type="submit" value="ログイン"/>
+          </div>
+      </form>
+        <div class="form-group">
+          <button onclick="showScreen('screen2')">アカウント作成</button>
+        </div>
+      </div>
+    </div>
+    <!-- アカウント作成画面 -->
+    <div class="screen" id="screen2">
+      <div class="container">
+        <h1>アカウント作成</h1>
+        <h4>ユーザー名とパスワードを入力してください</h4>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text"/>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password"/>
+        </div>
+        <!-- ユーザー情報を登録（不備がなければログイン画面に戻る）-->
+        <div class="form-group">
+          <button onclick="showScreen('screen1')">登録</button>
+        </div>
+        <!-- 「戻る」ボタン-->
+        <div class="form-group">
+          <button onclick="showScreen('screen1')">戻る</button>
+        </div>
+      </div>
+    </div>
+    <!-- 画面切り替え -->
+    <script>
+      function showScreen(screenId) {
+        // すべての画面を非表示にする
+        var screens = document.querySelectorAll('.screen');
+        for (var i = 0; i < screens.length; i++) {
+          screens[i].style.display = 'none';
+        }
+
+        // 指定された画面を表示する
+        document
+          .getElementById(screenId)
+          .style
+          .display = 'block';
+
+      }
+    </script>
+
+    <!-- JavaScript-->
+    <script type="text/javascript" src="/static/js/Login.js"></script>
+  </body>
+
+</html>

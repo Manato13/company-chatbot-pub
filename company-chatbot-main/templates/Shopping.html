@@ -1,0 +1,335 @@
+<html>
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+    <head>
+      <meta charset="UTF-8">
+      <title>Point Shopping</title>
+      <link rel="stylesheet" href="/static/css/header.css">
+    </head>
+
+    <body style="background-color: #FEF5E7;">
+
+      <!-- その他 -->
+      <style>
+        a {
+          text-decoration: none;
+        }
+
+        li {
+          list-style: none;
+          font-size: 1.2rem;
+        }
+
+        .site-title {
+          line-height: 1px;
+          font-weight: 600;
+          font-size: 2.4rem;
+        }
+
+        .site-title a {
+          color: #24292e;
+        }
+
+        #logoFrame img {
+          width: 70px;
+          height: 70px;
+        }
+      </style>
+      <!-- 商品一覧 -->
+      <style>
+        /* 商品 */
+        .container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 50px;
+        }
+
+        .item {
+          display: flex;
+          align-items: stretch;
+          background-color: #FEFCF8;
+
+          width: 95%;
+          max-width: 500px;
+          padding: 20px;
+
+          margin: 0 20px 30px;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 1200px) {
+          .container {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+
+          .item {
+            width: calc(50% - 20px);
+            /* 20px is for margin or gap */
+          }
+        }
+
+        .item img {
+          width: 30%;
+          max-width: 200px;
+          border: 4px solid beige;
+          aspect-ratio: 1 / 1;
+        }
+
+        .item-info {
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+          margin-left: 20px;
+        }
+
+        .item-info > * {
+          margin: 0;
+          padding: 0;
+        }
+
+        .item-name {
+          font-size: 20px;
+          font-weight: bold;
+          margin: 0 30px 0 0;
+        }
+
+        /* ポイントマーク */
+        .point-marker {
+          background-color: #FFCC00;
+          border-radius: 50%;
+          font-weight: 1000;
+          color: white;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #DAA520;
+        }
+      </style>
+      <!-- ポップアップ -->
+      <style>
+        /* 背景 */
+        .background {
+          width: 100%;
+          height: 100%;
+          position: fixed;
+          top: 0;
+          left: 0;
+          background: rgba(99, 99, 99, 0.3);
+          z-index: 998;
+        }
+
+        /* 画面 */
+        .modal {
+          justify-content: center;
+          position: relative;
+          margin: auto;
+
+          border-radius: 10px;
+
+          font-weight: bold;
+
+          z-index: 999;
+
+          background-color: #FEF8F1;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal img {
+          height: 50%;
+          border: 4px solid beige;
+          aspect-ratio: 1 / 1;
+          display: block;
+          margin: -10px auto 15px;
+        }
+
+        .modal.Fadein {
+          animation: modalOpen 2.0s ease;
+        }
+
+        @keyframes modalOpen {
+
+          /* 左→中心 */
+          0% {
+            left: -50%;
+            opacity: 0;
+          }
+
+          100% {
+            left: 0;
+            opacity: 1;
+          }
+        }
+
+        .modal.Fadeon {
+          opacity: 0;
+        }
+
+        .modal.Fadeout {
+          animation: modalClose 2.0s ease;
+        }
+
+        @keyframes modalClose {
+
+          /* 中心→右 */
+          0% {
+            left: 0;
+            opacity: 1;
+          }
+
+          100% {
+            left: 100%;
+            opacity: 0;
+          }
+        }
+
+        /* ボタン */
+        .button_dsign {
+          position: relative;
+          display: inline-block;
+          color: #1B1B1B;
+          text-decoration: none;
+
+          font-size: 20px;
+          font-weight: bold;
+        }
+
+        .button_dsign:hover {
+          cursor: pointer;
+          text-decoration: none;
+        }
+
+        .button_dsign::after {
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          content: '';
+          width: 100%;
+          height: 2px;
+          background: #333;
+          transform: scale(0.5, 1);
+          transform-origin: center top;
+          transition: transform 0.3s;
+        }
+
+        .button_dsign:hover::after {
+          transform: scale(1, 1);
+        }
+
+        /* 引き算 */
+        @keyframes fadeOutUp {
+          from {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          to {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+        }
+
+        .point-animation {
+          animation: fadeOutUp 1.5s forwards;
+        }
+      </style>
+
+      <!-- 見出し -->
+      <header id="header">
+        <div id="logoFrame">
+          <img src="static/img/logoidea2.png">
+        </div>
+        <h1 class="site-title">
+          <a href="/home">
+            ショッピング</a>
+        </h1>
+        <div style="display: block; margin: 23px auto auto 50px;">
+          <div id="point_name" style="font-size: 16px; font-weight: bold;"></div>
+          <div style="display: flex;">
+            <div class="point-marker" style="width: 25px; height: 25px; font-size: 23px; line-height: 25px; margin: 5px 10px 10px 0;">
+              P
+            </div>
+            <p id="you_point" style="font-size: 20px; margin-top: 8px;"></p>
+          </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li>
+                  <a href="/chatbot">チャットボット</a>
+                </li>
+                <li>
+                  <a href="/home">社内掲示板</a>
+                </li>
+                <li>
+                  <a href="/question">質問する</a>
+                </li>
+                <li>
+                  <a href="/shopping">ショッピング</a>
+                </li>
+                <li>
+                  <a href="https://jellyware.jp/hackaichi/" ref="noopener noreferrer">
+                    <img src="/static/img/hackAichiImage.png" alt="HackAichi" class="icon">
+                  </a>
+                </li>
+              </ul>
+        </nav>
+      </header>
+
+      <!-- 商品一覧 -->
+      <div id="Item-List" class="container"></div>
+
+      <!-- ポップアップ -->
+      <div id="modal_background" class="background " style="display: none;">
+        <div id="modal_window" class="modal Fadeon" style="width: 70%; height: 80%; max-width: 700px; max-height: 600px;">
+          <div id="modal_info"></div>
+          <a href="javascript:void(0)" id="back" class="button_dsign" style="position: absolute; bottom: 30px; left: 40px;">
+            戻る
+          </a>
+          <a href="javascript:void(0)" id="buy" class="button_dsign" style="position: absolute; bottom: 30px; right: 40px;">
+            購入
+          </a>
+        </div>
+      </div>
+
+      <!-- 購入確認 -->
+      <div id="buy_background" class="background" style="display: none;">
+        <div id="buy_window" class="modal" style="width: 500px; height: 200px; margin: auto;">
+          <div id="buy_info" style="font-size: 20px; text-align: center; margin-top: 70px;">購入してよろしいですか？</div>
+          <a href="javascript:void(0)" id="buy_no" class="button_dsign" style="position: absolute; bottom: 30px; left: 40px;">
+            いいえ
+          </a>
+          <a href="javascript:void(0)" id="buy_yes" class="button_dsign" style="position: absolute; bottom: 30px; right: 40px;">
+            はい
+          </a>
+        </div>
+      </div>
+
+      <div id="lowPointsPopup" class="background" style="display: none;">
+        <div class="modal" style="width: 500px; height: 200px; margin: auto;">
+          <div style="font-size: 20px; text-align: center; margin-top: 70px;">ポイントが足りません。</div>
+        </div>
+      </div>
+
+      <div id="purchaseCompletePopup" class="background" style="display: none;">
+        <div class="modal" style="width: 500px; height: 200px; margin: auto;">
+          <div style="font-size: 20px; text-align: center; margin-top: 70px;">購入が完了しました。</div>
+          <div id="pointsChange" style="font-size: 18px; text-align: center; margin-top: 20px; display: flex; align-items: center; justify-content: center;"></div>
+        </div>
+      </div>
+
+      <!-- JQuery -->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+      <!-- JavaScript-->
+      <script type="text/javascript" src="/static/js/Shopping.js"></script>
+    </body>
+
+  </html>

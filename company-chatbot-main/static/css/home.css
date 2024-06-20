@@ -1,0 +1,158 @@
+html {
+    font-size: 100%;
+    /*16px*/
+    background-color: #FEF5E7;
+}
+
+body {
+    color: #24292e;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    font-size: 1.3rem;
+}
+
+img {
+    max-width: 100%;
+}
+
+li {
+    list-style: none;
+    font-size: 1.2rem;
+}
+
+.site-title {
+    line-height: 1px;
+    font-weight: 600;
+    font-size: 2.4rem;
+}
+
+.site-title a {
+    color: #24292e;
+}
+
+#questionHeader {
+    background-color: #00000010;
+    padding: 0 8px 0 2.0rem;
+}
+
+#questionHeader div {
+    display: flex;
+}
+
+#questionHeaderSentence {
+    width: 60%
+}
+
+#questionHeaderNumAnswer {
+    width: 20%
+}
+
+#questionHeaderTime {
+    width: 20%
+}
+
+
+#questionHeaderTime {
+    margin-right: 0;
+    margin-left: auto;
+    width: 20%
+}
+
+#oneQuestion {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 4px 0.75rem 2.0rem;
+    font-size: 0.75rem;
+    position: relative;
+    background: #fff0cd;
+    box-shadow: 3px -3px 0px 0px rgba(0, 0, 0, 0.15); /* 影を右上に表示するように調整 */
+    border: dashed 2px white;
+}
+
+#oneQuestion a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #ffdb88 #fff #ffdb88;
+}
+
+#questionInfo {
+    padding-right: 12px;
+    width: 60%
+}
+
+#questionInfo header {
+    font-size: 1.0rem;
+}
+
+#questionInfo div {
+    font-size: 1.5rem;
+}
+
+#numComment {
+    padding: 0px 12px;
+    display: flex;
+    vertical-align: middle;
+    width: 20%
+}
+
+#numComment div {
+    display: flex;
+    align-items: center;
+}
+
+.oneQuestion {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 4px 0.75rem 2.0rem;
+    font-size: 0.75rem;
+    position: relative;
+    background: #fff0cd;
+    box-shadow: 3px -3px 0px 0px rgba(0, 0, 0, 0.15); /* 影を右上に表示するように調整 */
+    border: dashed 2px white;
+}
+
+.oneQuestion a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #ffdb88 #fff #ffdb88;
+}
+
+.questionInfo {
+    padding-right: 12px;
+    width: 60%
+}
+
+.questionInfo header {
+    font-size: 1.0rem;
+}
+
+.questionInfo div {
+    font-size: 1.5rem;
+}
+
+.numComment {
+    padding: 0px 12px;
+    display: flex;
+    vertical-align: middle;
+    width: 20%
+}
+
+.numComment div {
+    display: flex;
+    align-items: center;
+}

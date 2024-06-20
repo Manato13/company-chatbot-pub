@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css"/>
+    <link rel="stylesheet" href="/static/css/home.css">
+    <link rel="stylesheet" href="/static/css/answer.css">
+    <link rel="stylesheet" href="/static/css/header.css">
+
+    <title>進化するチャットボット</title>
+  </head>
+
+  <body>
+    
+    <style>
+      /* ポイントマーク */
+      .point-marker {
+          background-color: #FFCC00;
+          border-radius: 50%;
+          font-weight: 1000;
+          color: white;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #DAA520;
+        }
+        .background {
+          width: 100%;
+          height: 100%;
+          position: fixed;
+          top: 0;
+          left: 0;
+          background: rgba(99, 99, 99, 0.3);
+          z-index: 998;
+        }
+
+        /* 画面 */
+        .modal {
+          justify-content: center;
+          position: relative;
+          margin: auto;
+
+          border-radius: 10px;
+
+          font-weight: bold;
+
+          z-index: 999;
+
+          background-color: #FEF8F1;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+    <header id="header">
+      <div id="logoFrame">
+        <img src="static/img/logoidea2.png">
+      </div>
+
+      <h1 class="site-title">
+        <a href="/home">
+          社内掲示板</a>
+      </h1>
+      <div style="display: block; margin: 23px auto auto 50px;">
+        <div id="point_name" style="font-size: 16px; font-weight: bold;"></div>
+        <div style="display: flex;">
+          <div class="point-marker" style="width: 25px; height: 25px; font-size: 23px; line-height: 25px; margin: 5px 10px 10px 0;">
+            P
+          </div>
+          <p id="you_point" style="font-size: 20px; margin-top: 8px;"></p>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li>
+            <a href="/chatbot">チャットボット</a>
+          </li>
+          <li>
+            <a href="/home">社内掲示板</a>
+          </li>
+          <li>
+            <a href="/question">質問する</a>
+          </li>
+          <li>
+            <a href="/shopping">ショッピング</a>
+          </li>
+          <li>
+            <a href="https://jellyware.jp/hackaichi/" ref="noopener noreferrer">
+              <img src="/static/img/hackAichiImage.png" alt="HackAichi" class="icon">
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div id="background">
+      <div id="questionAnswer">
+        <!-- 質問文 -->
+        <div id="question">
+          <header>
+            <div id="boolSolvedAnswerFrame">
+              <div id="boolSolvedAnswer">
+                解決
+              </div>
+            </div>
+            <div id="updateTime">
+              更新時間
+            </div>
+            <div id="numAnswers">
+              <div>
+                <img src="/static/img/message-circle.svg" alt="num-commnet" class="icon">
+              </div>
+              <p>
+                <span>回答数</span>
+              </p>
+            </div>
+          </header>
+
+          <div id="questionBox">
+            <div id="questionSentence">
+              質問文
+            </div>
+          </div>
+        </div>
+        <!-- 回答文一覧 -->
+        <div id="stringAllAnswerBox">
+          <div id="stringAllAnswer">
+            すべての回答
+          </div>
+        </div>
+        <div id="answerList">
+          <div id="templateAnswer" class="answerElement">
+            <div class="userInfo">
+              <div>
+                <!-- 回答したユーザアイコン -->
+                <img class="userIcon">
+              </div>
+              <div class="userName">
+                ユーザ名
+              </div>
+            </div>
+            <div id="answerSentence">
+              回答文
+            </div>
+            <div id="reactionForAnswer">
+              <div id="goodPointFrame" onclick="clickGoodButton(this)">
+                <div id="goodIcon">
+                  <img src="static\img\good_icon_white.png">
+                </div>
+                <div id="numGoodPoint">
+                  いいね数
+                </div>
+              </div>
+              <div id="solvedAnswerFrame" onclick="clickSolvedAnswerButton(this)">
+                <div id="solvedAnswerIcon">
+                  <img src="static\img\solvedAnswer.svg">
+                </div>
+                <div id="stringSolvedAnswer">
+                  これで解決！
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--自分の回答欄-->
+        <div id="myAnswer">
+          <div class="userInfo">
+            <div>
+              <!-- 自分のユーザアイコン -->
+              <img id="myUserIcon">
+            </div>
+            <div id="myUserName">ユーザ名</div>
+          </div>
+          <div>
+            <div id="textareaBox">
+              <div id="textareaBackground">
+                <textarea placeholder="回答する"></textarea>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div id="answerButtonFrame" onclick="clickPostAnswer(this)">
+              <div>
+                投稿
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="purchaseCompletePopup" class="background" style="display: none;">
+      <div class="modal" style="width: 500px; height: 200px; margin: auto;">
+        <div style="font-size: 20px; text-align: center; margin-top: 70px;">30ポイント追加されました。</div>
+        <div id="pointsChange" style="font-size: 18px; text-align: center; margin-top: 20px; display: flex; align-items: center; justify-content: center;"></div>
+      </div>
+    </div>
+
+  </div>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="static/js/Answer.js"></script>
+</body>
+
+</html>
